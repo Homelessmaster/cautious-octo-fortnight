@@ -1,34 +1,119 @@
-﻿//Задача 41: Пользователь вводит с клавиатуры M чисел. Посчитайте, сколько чисел больше 0 ввёл пользователь.
+﻿// Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
+
 /*
-Console.Write("Введите количество чисел, которые вы хотите ввести >>> ");
-int n = Convert.ToInt32(Console.ReadLine());
-
-int count = 0;
-for(int i = 0; i < n; i++)
+void InputMatrix(double[,] matrix)
 {
-
-    Console.Write($"Введите число {i+1} >>> ");
-    int a = Convert.ToInt32(Console.ReadLine());
-
-    if(a>0) count++;
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            matrix[i, j] = new Random().Next(-10, 10) * new Random().NextDouble();
+            Console.Write($"{matrix[i,j]:f1}\t");
+        }
+        Console.WriteLine();
+    }
 }
-Console.WriteLine($"Вы ввели {count} чисел больше нуля");
+
+
+Console.Clear();
+Console.Write("Введите кол-во строк: ");
+int n = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите кол-во столбцов: ");
+int m = Convert.ToInt32(Console.ReadLine());
+double[,] matrix = new double [n, m];
+InputMatrix(matrix);
 */
 
 
+// Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, 
+//            и возвращает значение этого элемента или же указание, что такого элемента нет.
 
-//Задача 43: Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями 
-//           y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.
+/*
+void InputMatrix(int[,] matrix)
+{
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            matrix[i, j] = new Random().Next(0, 11);
+            Console.Write($"{matrix[i, j]} \t");
+        }
+        Console.WriteLine();
+    }
+}
 
-Console.Write("Введите число k1 >>> ");
-double k1 = Convert.ToDouble(Console.ReadLine());
-Console.Write("Введите число b1 >>> ");
-double b1 = Convert.ToDouble(Console.ReadLine());
+void FindIndexMatrix(int[,] matrix)
+{
+    if (a >= 0 && a < matrix.GetLength(0) + 1 && b >= 0 && b < matrix.GetLength(1) + 1)
+    {
+        Console.Write($"Там находится число: {matrix[a - 1, b - 1]} \t");
+    }
+    else
+    {
+        Console.WriteLine("Такого числа в массиве нет");
+    }
+}
 
-Console.Write("Введите число k2 >>> ");
-double k2 = Convert.ToDouble(Console.ReadLine());
-Console.Write("Введите число b2 >>> ");
-double b2 = Convert.ToDouble(Console.ReadLine());
+Console.Clear();
+Console.Write("Введите кол-во строк: ");
+int n = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите кол-во столбцов: ");
+int m = Convert.ToInt32(Console.ReadLine());
+int[,] matrix = new int[n, m];
+
+InputMatrix(matrix);
+
+Console.Write("Введите номер строки: ");
+int a = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите номер столбца: ");
+int b = Convert.ToInt32(Console.ReadLine());
+
+FindIndexMatrix(matrix);
+*/
 
 
-Console.WriteLine($"Точка пересечения двух прямых: {(b2 - b1) / (k1 - k2)}");
+// Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+
+void InputMatrix(int[,] matrix)
+{
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            matrix[i, j] = new Random().Next(0, 11);
+            Console.Write($"{matrix[i, j]} \t");
+        }
+        Console.WriteLine();
+    }
+}
+
+string ArithmeticMean(int[,] matrix)
+{
+    double ArithmeticMeanSumm = 0;
+    string result = string.Empty;
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        ArithmeticMeanSumm = 0;
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            ArithmeticMeanSumm = ArithmeticMeanSumm + matrix[i, j];
+        }
+        ArithmeticMeanSumm = ArithmeticMeanSumm/matrix.GetLength(1);
+        result = result + Convert.ToString(ArithmeticMeanSumm)  + "     ";
+    }
+    return result;
+}
+
+
+
+Console.Clear();
+Console.Write("Введите кол-во строк: ");
+int n = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите кол-во столбцов: ");
+int m = Convert.ToInt32(Console.ReadLine());
+int[,] matrix = new int[n, m];
+
+InputMatrix(matrix);
+
+Console.WriteLine();
+Console.WriteLine($"Cредние арифмитические: {ArithmeticMean(matrix)}");
